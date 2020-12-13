@@ -1,5 +1,6 @@
-import java.util.Arrays;
-
+/**
+ * class that manages the ships
+ */
 public abstract class Ship {
 	
 	private int bowRow;

@@ -1,9 +1,9 @@
-import com.sun.source.doctree.SummaryTree;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
+/**
+ * class that manages the ocean
+ */
 public class Ocean {
     protected Ship[][] ships = new Ship[10][10];
     private int shotsFired = 0;
@@ -21,7 +21,6 @@ public class Ocean {
            }
        }
     }
-
 
     //TODO: verify if we can change separate out the method to initiateShips
     /**
@@ -44,6 +43,7 @@ public class Ocean {
                 col = random.nextInt(10);
                 orientation =  random.nextBoolean();
             }
+
             ship.placeShipAt(row,col,orientation,this);
         }
 
@@ -148,15 +148,6 @@ public class Ocean {
      * @return integer, number of ships sunk
      */
     public int getShipsSunk(){
-//        shipsSunk = 0;
-//
-//        //loop through to count
-//        for (int i=0; i<10; i++){
-//            for (int j=0; j<10; j++){
-//                if (ships[i][j].isSunk()) shipsSunk++;
-//            }
-//        }
-
         return shipsSunk;
     }
 
@@ -207,22 +198,44 @@ public class Ocean {
     }
 
     public static void main(String[] args) {
-        Ocean ocean = new Ocean();
-        Ship destroyer =  new Destroyer();
-        Ship submarine = new Submarine();
-        destroyer.placeShipAt(3,4,true, ocean);
-        submarine.placeShipAt(5,5,false,ocean);
 
-        ocean.shootAt(3,4);
-        ocean.print();
-        ocean.shootAt(3,5);
-        ocean.print();
-        ocean.shootAt(3,6);
-        ocean.print();
-        ocean.shootAt(4,4);
-        ocean.print();
-        ocean.shootAt(5,5);
-        ocean.print();
+        //test to see the placement
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
+        for (int i=0; i<11; i++){
+            for (int j=0; j<11; j++){
+                //print 0-9s on the horizontal and vertical axis
+                if (i == 0 & j==0) System.out.print("   ");
+                else if (i==0) System.out.print(" "+(j-1)+" ");
+                else if (j==0) System.out.print(" "+(i-1)+" ");
+                else{
+                    //print out ships and status
+                    Ship ship = ocean.getShipArray()[i-1][j-1];
+                    if(ship.getShipType().equals("empty")) System.out.print(" . ");
+                    else System.out.print(" " + ship.toString() + " ");
+                }
+            }
+            System.out.print("\n");
+        }
+
+        //other tests
+        Ocean oceanEmpty = new Ocean();
+        Ship destroyer = new Destroyer();
+        Ship submarine = new Submarine();
+        destroyer.placeShipAt(3,4,true, oceanEmpty);
+        submarine.placeShipAt(5,5,false,oceanEmpty);
+
+        oceanEmpty.shootAt(3,4);
+        oceanEmpty.print();
+        oceanEmpty.shootAt(3,5);
+        oceanEmpty.print();
+        oceanEmpty.shootAt(3,6);
+        oceanEmpty.print();
+        oceanEmpty.shootAt(4,4);
+        oceanEmpty.print();
+        oceanEmpty.shootAt(5,5);
+        oceanEmpty.print();
+
     }
 
 }
