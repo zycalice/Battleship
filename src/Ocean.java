@@ -39,7 +39,7 @@ public class Ocean {
             col = random.nextInt(10);
             orientation =  random.nextBoolean();
 
-            while(!ship.okToPlaceShipAt(10,10,orientation,this)){
+            while(!ship.okToPlaceShipAt(row, col, orientation,this)){
                 row = random.nextInt(10);
                 col = random.nextInt(10);
                 orientation =  random.nextBoolean();
