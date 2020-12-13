@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public abstract class Ship {
 	
 	private int bowRow;
@@ -5,141 +7,179 @@ public abstract class Ship {
 	protected int length;
 	private boolean horizontal;
 	protected boolean[] hit = new boolean[4];
-	
-	/*
-	 * constructor
+
+	/**
+	 * simple constructor for ship
 	 */
 	public Ship() {
 	}
-	
-	/*
+
+
+	/**
 	 * get the row (0 to 9) which contains the bow (front) of the ship.
+	 * @return the row position of bow
 	 */
 	int getBowRow() {
 		return bowRow;
 	}
-	
-	/*
-	 * get the column (0 to 9) which contains the bow (front) of the ship
+
+	/**
+	 * get the column position of bow
+	 * @return the column position of bow
 	 */
 	int getBowColumn() {
 		return bowColumn;
 	}
 	
-	/* Returns the length of this particular ship. 
-	 * This method exists only to be overridden, so it doesn't much matter what it returns; 
-	 * an abstract "ship" doesn't have a fixed lengthxed length.xed length.xed length.
+
+	/**
+	 * check if the ship is horizontal
+	 * @return true if the ship is horizontal, otherwise false
 	 */
 	boolean isHorizontal() {
 		return horizontal;
 	}
-	
-	/* 
-	 * Sets the value of bowRow
+
+
+	/**
+	 * set the row position of bow
+	 * @param row row position of bow
 	 */
 	void setBowRow(int row) { 
 		this.bowRow = row;
 	}
 	
-	/*
-	 * Sets the value of bowColumn
+
+	/**
+	 * set the column position of bow
+	 * @param column column position of bow
 	 */
 	void setBowColumn(int column) { 
 		this.bowColumn = column;
 	}
-	
-	/*
-	 * Sets the value of the instance variable horizontal.
+
+
+	/**
+	 * set the orientation of this ship
+	 * @param horizontal set the ship to be horizontal or not
 	 */
 	void setHorizontal(boolean horizontal) { 
 		this.horizontal = horizontal;
 	}
-	
+
+
 	/*
-	 * get the number of squares occupied by the ship. 
-	 * An "empty sea" location has length 1
+	abstract method, will be overridden
 	 */
 	abstract int getLength();
 	
+
 	/*
-	 * get the type of the ship
+	abstract method, will be overridden
 	 */
 	abstract String getShipType();
-	
-	/*
-	 * Returns true if it is okay to put a ship of this length with its bow in this location,
-	 * with the given orientation, and returns false otherwise.
+
+	/**
+	 * check if it is okay to put ship at a location
+	 * @param row row position of the bow of the ship
+	 * @param column column position of the bow of the ship
+	 * @param horizontal a boolean variable determine if the ship is horizontal or not
+	 * @param ocean the ocean for this game
+	 * @return true is the ship bow can be placed at this position; false otherwise
 	 */
-	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		if (row>9 || column>9) return false;
-		if (horizontal) {
-			if (column+this.getLength()>9 || (column>0 && ocean.isOccupied(row,column-1) 
-					|| (row+this.getLength()<9 && ocean.isOccupied(row,column+1)))) return false;
-			for (int i=column; i<this.getLength();i++) {
-				if(ocean.isOccupied(row,i) || (row>0 && ocean.isOccupied(row-1,i))
-						||(row<9 && ocean.isOccupied(row+1,i))) return false;				
+	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean){
+		int shipLen = this.getLength();
+		int rowMin, rowMax, colMin, colMax;
+
+		//check for illegal arguments
+		if (row<0) throw new IllegalArgumentException("Row position of bow cannot be negative");
+		if (column<0) throw new IllegalArgumentException("Column position of bow cannot be negative");
+
+		//get a range of squares to check for emptiness
+		if (horizontal){//horizontal version
+			//check if the space can even fit the ship length
+			if (column + shipLen-1>9) return false;
+			else{
+				rowMin = Math.max(0,row-1);
+				rowMax = Math.min(9,row+1);
+				colMin = Math.max(0,column-1);
+				colMax = Math.min(9,column+shipLen);
 			}
-			return true;
-		} else {
-			if (row+this.getLength()>9 || (row>0 && ocean.isOccupied(row-1,column) 
-					|| (column+this.getLength()<9 && ocean.isOccupied(row+1,column)))) return false;
-			for (int i=row; i<this.getLength();i++) {
-				if(ocean.isOccupied(i,column) || (column>0 && ocean.isOccupied(i,column-1))
-						||(column<9 && ocean.isOccupied(i,column+1))) return false;				
+		}else{//Vertical version
+			if (row + shipLen-1>9)return false;
+			else{
+				rowMin = Math.max(0,row-1);
+				rowMax = Math.min(9,row+shipLen);
+				colMin = Math.max(0,column-1);
+				colMax = Math.min(9,column+1);
 			}
-			return true;
-		}	
+		}
+
+		//for loop to check all relevant spaces
+		//rowMin and rowMax inclusive
+		for (int i=rowMin; i<=rowMax; i++){
+			for (int j=colMin; j<=colMax; j++){
+				if (ocean.isOccupied(i,j)) return false;
+			}
+		}
+		return true;
+
 	}
-	
-	/*
-	 * "Puts" the ship in the ocean.
+
+	/**
+	 * puts the sea in the ocean
+	 * @param row row position of the ship bow
+	 * @param column column position of the ship bow
+	 * @param horizontal horizontal or not
+	 * @param ocean ocean of the game
 	 */
 	void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+		//update ship
 		this.setBowRow(row);
 		this.setBowColumn(column);
 		this.setHorizontal(horizontal);
-		Ship[][] ships = ocean.getShipArray();
+
+		//update ocean
 		if (horizontal) {
 		    for (int i = column; i < column + this.getLength(); i++) {
-	            ships[row][i] = this;
+	            ocean.ships[row][i] = this;
 	        }
 		} else {
 		    for (int i = row; i < row + this.getLength(); i++) {
-		        ships[i][column] = this;
+		        ocean.ships[i][column] = this;
 		    }
 		}
 	}
-	
-	/*
+
+	/**
 	 * if the space is occupied by the ship, mark that part of ship as hit and return true
+	 * @param row row position of the hit
+	 * @param column column position of the hit
+	 * @return true or false if the ship is being hit
 	 */
 	boolean shootAt(int row, int column) {
 		// if already sunk return false
 		if (this.isSunk()) return false;
-		if (this.horizontal) {
-			if (this.bowColumn == column) {
-				for (int i = 0; i<this.getLength(); i++) {
-					if (this.bowRow+i == row) {
-						this.hit[i] = true;
-						return true;
-					}
-				}
+
+		if (this.horizontal) { //horizontal version
+			int diffCol = column - this.bowColumn;
+			if (this.bowRow == row && diffCol >= 0 && diffCol<this.getLength()) {
+				this.hit[diffCol] = true;
+				return true;
 			} 
-		} else {
-			if (this.bowRow == row) {
-				for (int i=0; i<this.getLength(); i++) {
-					if (this.bowColumn+i==column) {
-						this.hit[i] = true;
-						return true;
-					}
-				}
+		} else { //vertical version
+			int diffRow = row - this.bowRow;
+			if (this.bowColumn == column && diffRow >= 0 && diffRow<this.getLength()) {
+				this.hit[diffRow] = true;
+				return true;
 			}
 		}
 		return false;
 	}
-	
-	/*
-	 * Return true if every part of the ship has been hit, false otherwise.
+
+	/**
+	 * if all parts of the ship has been hit
+	 * @return true if all parts of the ship has been hit; false otherwise;
 	 */
 	boolean isSunk() {
 		for (int i=0; i<this.getLength();i++) {
@@ -147,9 +187,11 @@ public abstract class Ship {
 		}
 		return true;
 	}
-	
-	/*
-	 * Returns a single-character String to use in the Ocean's print method
+
+	/**
+	 * string value to indicate if this ship has been sunk or not
+	 * can be only used to print location that the user has shot at
+	 * @return "x" if the ship has been sunk,"S" if it has not been sunk.
 	 */
 	@Override
 	public String toString() {

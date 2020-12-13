@@ -1,7 +1,7 @@
 
-public class Crusier extends Ship{
+public class Cruiser extends Ship{
 	
-	public Crusier() {
+	public Cruiser() {
 		this.length = 3;
 		for (int i = 0; i<this.length;i++) {
 			this.hit[i]=false;
