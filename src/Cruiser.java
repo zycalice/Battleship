@@ -1,3 +1,10 @@
+/**
+* This is a class for a cruiser (ship of length 3) in the game Battleship
+*
+* @author  Xinyi Li & Yuchen Zhang
+* @version 1.0
+* @since   2020-12-15
+*/
 
 public class Cruiser extends Ship{
 	
@@ -8,20 +15,22 @@ public class Cruiser extends Ship{
 		}
 	}
 
-	/*
-	 * return the length of the ship
+	/**
+	 * get the length of the ship
+	 * @return length of the ship
 	 */
 	@Override
 	int getLength() {
 		return this.length;
 	}
 	
-	/*
-	 * return the ship type
+	/**
+	 * get the type of the ship
+	 * @return ship type
 	 */
 	@Override
 	String getShipType() {
-		return "crusier";
+		return "cruiser";
 	}
 
 }

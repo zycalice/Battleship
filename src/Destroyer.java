@@ -1,4 +1,10 @@
-
+/**
+* This is a class for a destroyer (ship of length 2) in the game Battleship
+*
+* @author  Xinyi Li & Yuchen Zhang
+* @version 1.0
+* @since   2020-12-15
+*/
 public class Destroyer extends Ship{
 	
 	public Destroyer() {
@@ -8,16 +14,18 @@ public class Destroyer extends Ship{
 		}
 	}
 
-	/*
-	 * return the length of the ship
+	/**
+	 * get the length of the ship
+	 * @return length of the ship
 	 */
 	@Override
 	int getLength() {
 		return this.length;
 	}
 	
-	/*
-	 * return the ship type
+	/**
+	 * get the type of the ship
+	 * @return ship type
 	 */
 	@Override
 	String getShipType() {

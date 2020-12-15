@@ -1,6 +1,10 @@
 /**
- * class that manages the ships
- */
+* class that manages the ships
+*
+* @author  Xinyi Li & Yuchen Zhang
+* @version 1.0
+* @since   2020-12-15
+*/
 public abstract class Ship {
 	
 	private int bowRow;
@@ -69,14 +73,14 @@ public abstract class Ship {
 	}
 
 
-	/*
-	abstract method, will be overridden
+	/**
+	 * abstract method, will be overridden
 	 */
 	abstract int getLength();
 	
 
-	/*
-	abstract method, will be overridden
+	/**
+	 * abstract method, will be overridden
 	 */
 	abstract String getShipType();
 

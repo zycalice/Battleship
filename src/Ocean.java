@@ -198,7 +198,7 @@ public class Ocean {
     }
 
     public static void main(String[] args) {
-
+    	/***
         //test to see the placement
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
@@ -235,7 +235,7 @@ public class Ocean {
         oceanEmpty.print();
         oceanEmpty.shootAt(5,5);
         oceanEmpty.print();
-
+		***/
     }
 
 }

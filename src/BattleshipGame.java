@@ -1,8 +1,18 @@
+/**
+* This is a battleship game runner in the game Battleship
+*
+* @author  Xinyi Li & Yuchen Zhang
+* @version 1.0
+* @since   2020-12-15
+*/
+
 import java.util.Scanner;
 
 public class BattleshipGame {//the methods below are support methods for user inputs
-
-    /**
+	
+	private int count;
+    
+	/**
      * check if input is an integer
      * @param userInput check if the user input is a valid integer
      * @return true if it is a integer, false if it is not an integer
@@ -48,9 +58,45 @@ public class BattleshipGame {//the methods below are support methods for user in
 
         return Integer.parseInt(userInputS);
     }
-
+    
+    public void play() {
+    	Ocean ocean = new Ocean();
+    	ocean.placeAllShipsRandomly();
+    	Scanner s = new Scanner(System.in);
+    	while (!ocean.isGameOver()) {
+    		ocean.print();
+    		System.out.println("Please the row number to shoot at (0-9)");
+    		int row = validInteger(0,9);
+    		System.out.println("Please the column number to shoot at (0-9)");
+    		int column = validInteger(0,9);
+    		if (ocean.shootAt(row, column)) {
+    			if (ocean.getShipArray()[row][column].isSunk()) {
+    				System.out.println("You just hit and sank a "+ocean.getShipArray()[row][column].getShipType());
+    			} else {
+    				System.out.println("You just hit!");
+    			}
+    			
+    		} else {
+    			System.out.println("You just missed!");
+    		}
+    		count++;
+    	}
+    	ocean.print();
+    	System.out.println("Game over! Your final score is: "+count);
+    }
+    
     public static void main(String[] args) {
-
+    	BattleshipGame bsg = new BattleshipGame();
+    	double bestscore = Double.POSITIVE_INFINITY;
+    	String again = "Y";
+    	while (again.equals("Y")) {
+    		bsg.play();
+    		bestscore=Math.min(bestscore,bsg.count);
+    		System.out.println("Do you want to play again? Your current best score is "+bestscore+" Enter Y to continue, other keys to quit");
+    		Scanner s = new Scanner(System.in);
+    		again = s.nextLine();
+    	}
+    	
     }
 
 }
