@@ -10,6 +10,22 @@ import java.util.Scanner;
 public class BattleshipGame {//the methods below are support methods for user inputs
 	
 	private int count;
+	static int gameCount;
+	static int bestCount = Integer.MAX_VALUE;
+
+	/**
+	 * constructor, keep track of number of games played.
+	 */
+	BattleshipGame(){
+		if (gameCount==0) System.out.println("Welcome to Battleship. " +
+				"This is your first game. \n" +
+				"Take your best shot!");
+		else System.out.println("Welcome to Battleship. " +
+				"Your best score has been "+ bestCount + ". Think you can do better this time? \n" +
+				"Take your best shot!");
+		gameCount++;
+
+	}
     
 	/**
      * check if input is an integer, obtained from previous hw's UserInteraction class
@@ -31,8 +47,8 @@ public class BattleshipGame {//the methods below are support methods for user in
      * @return true if input is not valid; false if it is valid/no error
      */
     protected boolean inputIsNotRequiredInteger(String userInput, int min, int max){
-        if (inputIsInteger(userInput)){
-            int wordLenInput= Integer.parseInt(userInput);
+        if (inputIsInteger(userInput.trim())){
+            int wordLenInput= Integer.parseInt(userInput.trim());
             return (wordLenInput > max || wordLenInput < min);
         }
         return true;
@@ -58,6 +74,7 @@ public class BattleshipGame {//the methods below are support methods for user in
         return Integer.parseInt(userInputS);
     }
 
+
 	/**
 	 * method to play the game
 	 */
@@ -66,14 +83,20 @@ public class BattleshipGame {//the methods below are support methods for user in
     	ocean.placeAllShipsRandomly();
 
     	while (!ocean.isGameOver()) {
+    		//print game
     		ocean.print();
-    		System.out.println("Please enter the row number to shoot at (0-9)");
-    		int row = validInteger(0,9);
-    		System.out.println("Please enter the column number to shoot at (0-9)");
-    		int column = validInteger(0,9);
+    		//ask for row column input while ensure
+			System.out.println("Please enter the row number and column number to shoot at (0-9).");
+			System.out.println("Row number:");
+			int row = validInteger(0,9);
+			System.out.println("Column number:");
+			int column = validInteger(0,9);
+
+			//update game
     		if (ocean.shootAt(row, column)) {
     			if (ocean.getShipArray()[row][column].isSunk()) {
-    				System.out.println("You just hit and sank a "+ocean.getShipArray()[row][column].getShipType());
+    				System.out.println("You just hit and sank a "+
+							ocean.getShipArray()[row][column].getShipType());
     			} else {
     				System.out.println("You just hit!");
     			}
@@ -83,8 +106,9 @@ public class BattleshipGame {//the methods below are support methods for user in
     		}
     		count++;
     	}
+    	bestCount = Math.min(count, bestCount);
     	ocean.print();
-    	System.out.println("Game over! Your final score is: "+count);
+    	System.out.println("Game over! Your final score is: " + count);
     }
 
 	/**
@@ -92,13 +116,15 @@ public class BattleshipGame {//the methods below are support methods for user in
 	 * @param args arguments
 	 */
 	public static void main(String[] args) {
-    	BattleshipGame bsg = new BattleshipGame();
-    	double bestscore = Double.POSITIVE_INFINITY;
-    	String again = "Y";
-    	while (again.equals("Y")) {
+		//while loop to play again
+    	String again = "y";
+    	while (again.equals("y")) {
+    		//first game
+			BattleshipGame bsg = new BattleshipGame();
     		bsg.play();
-    		bestscore=Math.min(bestscore,bsg.count);
-    		System.out.println("Do you want to play again? Your current best score is "+bestscore+" Enter Y to continue, other keys to quit");
+    		//ask for play again
+    		System.out.println("Do you want to play again? Your current best score is "+
+					BattleshipGame.bestCount+". \nEnter 'y' to continue, other keys to quit");
     		Scanner s = new Scanner(System.in);
     		again = s.nextLine();
     	}
