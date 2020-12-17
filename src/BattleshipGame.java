@@ -12,7 +12,7 @@ public class BattleshipGame {//the methods below are support methods for user in
 	private int count;
     
 	/**
-     * check if input is an integer
+     * check if input is an integer, obtained from previous hw's UserInteraction class
      * @param userInput check if the user input is a valid integer
      * @return true if it is a integer, false if it is not an integer
      */
@@ -24,7 +24,7 @@ public class BattleshipGame {//the methods below are support methods for user in
 
 
     /**
-     * check if the input does not meet requirement
+     * check if the input does not meet requirement, obtained from previous hw's UserInteraction class
      * @param userInput user input in string format
      * @param min minimum requirement for the integer
      * @param max maximum requirement for the integer
@@ -40,7 +40,7 @@ public class BattleshipGame {//the methods below are support methods for user in
 
 
     /**
-     *
+     * input a valid integer; obtained from previous hw's UserInteraction class
      * @param min minimum requirement for the integer
      * @param max maximum requirement for the integer
      * @return a valid integer as required
@@ -57,16 +57,19 @@ public class BattleshipGame {//the methods below are support methods for user in
 
         return Integer.parseInt(userInputS);
     }
-    
-    public void play() {
+
+	/**
+	 * method to play the game
+	 */
+	public void play() {
     	Ocean ocean = new Ocean();
     	ocean.placeAllShipsRandomly();
-    	Scanner s = new Scanner(System.in);
+
     	while (!ocean.isGameOver()) {
     		ocean.print();
-    		System.out.println("Please the row number to shoot at (0-9)");
+    		System.out.println("Please enter the row number to shoot at (0-9)");
     		int row = validInteger(0,9);
-    		System.out.println("Please the column number to shoot at (0-9)");
+    		System.out.println("Please enter the column number to shoot at (0-9)");
     		int column = validInteger(0,9);
     		if (ocean.shootAt(row, column)) {
     			if (ocean.getShipArray()[row][column].isSunk()) {
@@ -83,8 +86,12 @@ public class BattleshipGame {//the methods below are support methods for user in
     	ocean.print();
     	System.out.println("Game over! Your final score is: "+count);
     }
-    
-    public static void main(String[] args) {
+
+	/**
+	 * main method
+	 * @param args arguments
+	 */
+	public static void main(String[] args) {
     	BattleshipGame bsg = new BattleshipGame();
     	double bestscore = Double.POSITIVE_INFINITY;
     	String again = "Y";
