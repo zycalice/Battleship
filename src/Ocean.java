@@ -2,7 +2,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * class that manages the ocean
+ * This is a class the ocean, operates the ocean
+ *
+ * @author  Xinyi Li & Yuchen Zhang
+ * @version 1.0
+ * @since   2020-12-15
  */
 public class Ocean {
     protected Ship[][] ships = new Ship[10][10];
@@ -197,7 +201,7 @@ public class Ocean {
         }
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
     	/***
         //test to see the placement
         Ocean ocean = new Ocean();
@@ -236,6 +240,6 @@ public class Ocean {
         oceanEmpty.shootAt(5,5);
         oceanEmpty.print();
 		***/
-    }
+//    }
 
 }

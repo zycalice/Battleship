@@ -5,9 +5,11 @@
 * @version 1.0
 * @since   2020-12-15
 */
-
 public class Cruiser extends Ship{
-	
+
+	/**
+	 * constructor
+	 */
 	public Cruiser() {
 		this.length = 3;
 		for (int i = 0; i<this.length;i++) {

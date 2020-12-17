@@ -6,7 +6,10 @@
 * @since   2020-12-15
 */
 public class Destroyer extends Ship{
-	
+
+	/**
+	 * constructor
+	 */
 	public Destroyer() {
 		this.length = 2;
 		for (int i = 0; i<this.length;i++) {

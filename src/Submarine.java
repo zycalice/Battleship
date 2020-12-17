@@ -6,7 +6,10 @@
 * @since   2020-12-15
 */
 public class Submarine extends Ship{
-	
+
+	/**
+	 * constructor
+	 */
 	public Submarine() {
 		this.length = 1;
 		for (int i = 0; i<this.length;i++) {

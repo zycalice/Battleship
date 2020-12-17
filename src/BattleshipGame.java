@@ -1,13 +1,12 @@
-/**
-* This is a battleship game runner in the game Battleship
-*
-* @author  Xinyi Li & Yuchen Zhang
-* @version 1.0
-* @since   2020-12-15
-*/
-
 import java.util.Scanner;
 
+/**
+ * This is a battleship game runner in the game Battleship
+ *
+ * @author  Xinyi Li & Yuchen Zhang
+ * @version 1.0
+ * @since   2020-12-15
+ */
 public class BattleshipGame {//the methods below are support methods for user inputs
 	
 	private int count;

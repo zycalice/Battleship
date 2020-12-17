@@ -1,5 +1,5 @@
 /**
-* class that manages the ships
+* This is a class that manages the ships (all types)
 *
 * @author  Xinyi Li & Yuchen Zhang
 * @version 1.0

@@ -6,7 +6,10 @@
 * @since   2020-12-15
 */
 public class EmptySea extends Ship{
-	
+
+	/**
+	 * constructor
+	 */
 	public EmptySea() {
 		this.length = 1;
 		for (int i = 0; i<this.length;i++) {

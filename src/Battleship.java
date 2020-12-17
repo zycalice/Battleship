@@ -5,9 +5,11 @@
 * @version 1.0
 * @since   2020-12-15
 */
-
 public class Battleship extends Ship{
-	
+
+	/**
+	 * constructor, assign length and initial hit
+	 */
 	public Battleship() {
 		this.length = 4;
 		for (int i = 0; i<this.length;i++) {

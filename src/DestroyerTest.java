@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertThrows;
+//import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -68,9 +68,8 @@ class DestroyerTest {
 	//exception case for okToPlaceShipAt
 	void testOkToPlaceShipAtRowException() {
 		Ocean ocean = new Ocean();
-		Exception e = assertThrows(IllegalArgumentException.class, () -> {
-			destroyer.okToPlaceShipAt(-1, 1, false, ocean);
-		});
+		Exception e = assertThrows(IllegalArgumentException.class, () ->
+				destroyer.okToPlaceShipAt(-1, 1, false, ocean));
 		assertEquals("Row position of bow cannot be negative", e.getMessage());
 	}
 	
@@ -78,9 +77,8 @@ class DestroyerTest {
 	//exception case for okToPlaceShipAt
 	void testOkToPlaceShipAtColException() {
 		Ocean ocean = new Ocean();
-		Exception e = assertThrows(IllegalArgumentException.class, () -> {
-			destroyer.okToPlaceShipAt(1, -1, false, ocean);
-		});
+		Exception e = assertThrows(IllegalArgumentException.class, () ->
+				destroyer.okToPlaceShipAt(1, -1, false, ocean));
 		assertEquals("Column position of bow cannot be negative", e.getMessage());
 	}
 	
