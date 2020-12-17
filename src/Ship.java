@@ -14,13 +14,6 @@ public abstract class Ship {
 	protected boolean[] hit = new boolean[4];
 
 	/**
-	 * simple constructor for ship
-	 */
-	public Ship() {
-	}
-
-
-	/**
 	 * get the row (0 to 9) which contains the bow (front) of the ship.
 	 * @return the row position of bow
 	 */
