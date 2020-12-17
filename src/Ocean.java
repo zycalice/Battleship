@@ -202,7 +202,7 @@ public class Ocean {
     }
 
 //    public static void main(String[] args) {
-    	/***
+    	/*
         //test to see the placement
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
@@ -221,25 +221,7 @@ public class Ocean {
             }
             System.out.print("\n");
         }
-
-        //other tests
-        Ocean oceanEmpty = new Ocean();
-        Ship destroyer = new Destroyer();
-        Ship submarine = new Submarine();
-        destroyer.placeShipAt(3,4,true, oceanEmpty);
-        submarine.placeShipAt(5,5,false,oceanEmpty);
-
-        oceanEmpty.shootAt(3,4);
-        oceanEmpty.print();
-        oceanEmpty.shootAt(3,5);
-        oceanEmpty.print();
-        oceanEmpty.shootAt(3,6);
-        oceanEmpty.print();
-        oceanEmpty.shootAt(4,4);
-        oceanEmpty.print();
-        oceanEmpty.shootAt(5,5);
-        oceanEmpty.print();
-		***/
+		*/
 //    }
 
 }
