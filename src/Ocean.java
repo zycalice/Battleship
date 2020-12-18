@@ -26,7 +26,6 @@ public class Ocean {
        }
     }
 
-    //TODO: verify if we can change separate out the method to initiateShips
     /**
      * place all ships randomly in the ocean
      */

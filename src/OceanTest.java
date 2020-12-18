@@ -1,4 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OceanTest {
@@ -99,5 +103,14 @@ class OceanTest {
         assertEquals("destroyer", shipsTest[3][4].getShipType());
         assertEquals("destroyer", shipsTest[3][5].getShipType());
         assertEquals("submarine", shipsTest[5][5].getShipType());
+    }
+
+    @Test
+    void initiateShipTest(){
+        ArrayList<Ship> ships = ocean.initiateShips();
+        assertEquals(10, ships.size());
+        assertEquals("battleship", ships.get(0).getShipType());
+        assertEquals("destroyer", ships.get(5).getShipType());
+        assertEquals("submarine", ships.get(9).getShipType());
     }
 }
