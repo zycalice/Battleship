@@ -170,6 +170,7 @@ public class Ocean {
         return ships;
     }
 
+
     /**
      * print the ocean;
      * 'x' to indicate a location containing a sunken ship (all parts are hit)
