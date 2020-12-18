@@ -9,10 +9,11 @@ import java.util.Random;
  * @since   2020-12-15
  */
 public class Ocean {
+
     protected Ship[][] ships = new Ship[10][10];
     private int shotsFired = 0;
     private int hitCount = 0;
-    protected int shipsSunk = 0;
+    protected int shipsSunk = 0; //protected for testing purposes
 
     /**
      * constructor to create an empty sea
