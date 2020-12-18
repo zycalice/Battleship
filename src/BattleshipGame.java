@@ -47,8 +47,8 @@ public class BattleshipGame {//the methods below are support methods for user in
      * @return true if input is not valid; false if it is valid/no error
      */
     protected boolean inputIsNotRequiredInteger(String userInput, int min, int max){
-        if (inputIsInteger(userInput.trim())){
-            int wordLenInput= Integer.parseInt(userInput.trim());
+        if (inputIsInteger(userInput)){
+            int wordLenInput= Integer.parseInt(userInput);
             return (wordLenInput > max || wordLenInput < min);
         }
         return true;
