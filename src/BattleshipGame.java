@@ -109,6 +109,8 @@ public class BattleshipGame {//the methods below are support methods for user in
     	bestCount = Math.min(count, bestCount);
     	ocean.print();
     	System.out.println("Game over! Your final score is: " + count);
+		System.out.println("The best possible score is 20.");
+
     }
 
 	/**
