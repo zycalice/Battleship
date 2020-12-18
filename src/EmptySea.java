@@ -40,7 +40,7 @@ public class EmptySea extends Ship{
 	 * @return false
 	 */
 	@Override
-	public boolean shootAt(int row, int column) {
+	protected boolean shootAt(int row, int column) {
 		return false;
 	}
 	
@@ -49,7 +49,7 @@ public class EmptySea extends Ship{
 	 * @return false
 	 */
 	@Override
-	public boolean isSunk() {
+	protected boolean isSunk() {
 		return false;
 	}
 	

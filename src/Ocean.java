@@ -17,7 +17,7 @@ public class Ocean {
     /**
      * constructor to create an empty sea
      */
-    public Ocean(){
+    protected Ocean(){
        for (int i=0; i<10; i++){
            for (int j=0;j<10; j++){
                EmptySea empty = new EmptySea();
@@ -29,7 +29,7 @@ public class Ocean {
     /**
      * place all ships randomly in the ocean
      */
-    public void placeAllShipsRandomly(){
+    protected void placeAllShipsRandomly(){
         ArrayList<Ship> shipArrayList = initiateShips();
         Random random = new Random();
         int row;
@@ -105,7 +105,7 @@ public class Ocean {
      * @param column column position of the hit
      * @return true everytime the user shoots at the same location if the ship is still up; otherwise false
      */
-    public boolean shootAt(int row, int column){
+    protected boolean shootAt(int row, int column){
 
         //update shots fired
         //call Ship.shootAt to update the ship

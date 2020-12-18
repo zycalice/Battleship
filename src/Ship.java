@@ -85,7 +85,7 @@ public abstract class Ship {
 	 * @param ocean the ocean for this game
 	 * @return true is the ship bow can be placed at this position; false otherwise
 	 */
-	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean){
+	protected boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean){
 		int shipLen = this.getLength();
 		int rowMin, rowMax, colMin, colMax;
 
@@ -131,7 +131,7 @@ public abstract class Ship {
 	 * @param horizontal horizontal or not
 	 * @param ocean ocean of the game
 	 */
-	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+	protected void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		//update ship
 		this.setBowRow(row);
 		this.setBowColumn(column);
@@ -155,7 +155,7 @@ public abstract class Ship {
 	 * @param column column position of the hit
 	 * @return true or false if the ship is being hit
 	 */
-	public boolean shootAt(int row, int column) {
+	protected boolean shootAt(int row, int column) {
 		// if already sunk return false
 		if (this.isSunk()) return false;
 
@@ -179,7 +179,7 @@ public abstract class Ship {
 	 * if all parts of the ship has been hit
 	 * @return true if all parts of the ship has been hit; false otherwise;
 	 */
-	public boolean isSunk() {
+	protected boolean isSunk() {
 		for (int i=0; i<this.getLength();i++) {
 			if (!this.hit[i]) return false ;
 		}

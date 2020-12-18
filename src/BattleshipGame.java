@@ -18,7 +18,7 @@ public class BattleshipGame {//the methods below are support methods for user in
 	/**
 	 * constructor, keep track of number of games played.
 	 */
-	BattleshipGame(){
+	public BattleshipGame(){
 		if (gameCount==0) System.out.println("Welcome to Battleship. " +
 				"This is your first game. \n" +
 				"Take your best shot!");
