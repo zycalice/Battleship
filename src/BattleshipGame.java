@@ -8,10 +8,12 @@ import java.util.Scanner;
  * @since   2020-12-15
  */
 public class BattleshipGame {//the methods below are support methods for user inputs
-	
+
+	private final Ocean ocean = new Ocean();
 	private int count;
 	static int gameCount;
 	static int bestCount = Integer.MAX_VALUE;
+
 
 	/**
 	 * constructor, keep track of number of games played.
@@ -79,7 +81,7 @@ public class BattleshipGame {//the methods below are support methods for user in
 	 * method to play the game
 	 */
 	public void play() {
-    	Ocean ocean = new Ocean();
+
     	ocean.placeAllShipsRandomly();
 
     	while (!ocean.isGameOver()) {
