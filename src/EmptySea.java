@@ -22,7 +22,7 @@ public class EmptySea extends Ship{
 	 * @return length of the empty sea
 	 */
 	@Override
-	int getLength() {
+	public int getLength() {
 		return this.length;
 	}
 	
@@ -31,7 +31,7 @@ public class EmptySea extends Ship{
 	 * @return empty
 	 */
 	@Override
-	String getShipType() {
+	public String getShipType() {
 		return "empty";
 	}
 	
@@ -40,7 +40,7 @@ public class EmptySea extends Ship{
 	 * @return false
 	 */
 	@Override
-	boolean shootAt(int row, int column) {
+	public boolean shootAt(int row, int column) {
 		return false;
 	}
 	
@@ -49,7 +49,7 @@ public class EmptySea extends Ship{
 	 * @return false
 	 */
 	@Override
-	boolean isSunk() {
+	public boolean isSunk() {
 		return false;
 	}
 	

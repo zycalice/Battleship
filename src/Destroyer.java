@@ -22,7 +22,7 @@ public class Destroyer extends Ship{
 	 * @return length of the ship
 	 */
 	@Override
-	int getLength() {
+	public int getLength() {
 		return this.length;
 	}
 	
@@ -31,7 +31,7 @@ public class Destroyer extends Ship{
 	 * @return ship type
 	 */
 	@Override
-	String getShipType() {
+	public String getShipType() {
 		return "destroyer";
 	}
 

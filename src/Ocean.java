@@ -29,7 +29,7 @@ public class Ocean {
     /**
      * place all ships randomly in the ocean
      */
-    void placeAllShipsRandomly(){
+    public void placeAllShipsRandomly(){
         ArrayList<Ship> shipArrayList = initiateShips();
         Random random = new Random();
         int row;
@@ -56,7 +56,7 @@ public class Ocean {
      * create arraylist of ships
      * @return an arraylist of ships
      */
-    ArrayList<Ship> initiateShips(){
+    protected ArrayList<Ship> initiateShips(){
         ArrayList<Ship> initialShips = new ArrayList<>();
 
         //battleship
@@ -93,7 +93,7 @@ public class Ocean {
      * @param column column of the position
      * @return return true is the position is occupied; return false if it is empty
      */
-    boolean isOccupied(int row, int column){
+    protected boolean isOccupied(int row, int column){
         return (!ships[row][column].getShipType().equals("empty"));
     }
 
@@ -105,7 +105,7 @@ public class Ocean {
      * @param column column position of the hit
      * @return true everytime the user shoots at the same location if the ship is still up; otherwise false
      */
-    boolean shootAt(int row, int column){
+    public boolean shootAt(int row, int column){
 
         //update shots fired
         //call Ship.shootAt to update the ship
@@ -158,7 +158,7 @@ public class Ocean {
      * check if the game ended, meaning all 10 ships are sunk
      * @return true if game ended, false if game is not
      */
-    boolean isGameOver(){
+    protected boolean isGameOver(){
         return (getShipsSunk()==10);
     }
 
@@ -166,7 +166,7 @@ public class Ocean {
      * get the ships array
      * @return 2D array of row positions and column positions
      */
-    Ship[][] getShipArray(){
+    public Ship[][] getShipArray(){
         return ships;
     }
 
@@ -178,7 +178,7 @@ public class Ocean {
      * 'S' to indicate a location that user have fired upon and hit a (real) ship
      * '.' (a period) to indicate a location that you have never fired upon.
      */
-    void print(){
+    public void print(){
         for (int i=0; i<11; i++){
             for (int j=0; j<11; j++){
                 //print 0-9s on the horizontal and vertical axis
@@ -201,27 +201,5 @@ public class Ocean {
         }
     }
 
-//    public static void main(String[] args) {
-    	/*
-        //test to see the placement
-        Ocean ocean = new Ocean();
-        ocean.placeAllShipsRandomly();
-        for (int i=0; i<11; i++){
-            for (int j=0; j<11; j++){
-                //print 0-9s on the horizontal and vertical axis
-                if (i == 0 & j==0) System.out.print("   ");
-                else if (i==0) System.out.print(" "+(j-1)+" ");
-                else if (j==0) System.out.print(" "+(i-1)+" ");
-                else{
-                    //print out ships and status
-                    Ship ship = ocean.getShipArray()[i-1][j-1];
-                    if(ship.getShipType().equals("empty")) System.out.print(" . ");
-                    else System.out.print(" " + ship.toString() + " ");
-                }
-            }
-            System.out.print("\n");
-        }
-		*/
-//    }
 
 }

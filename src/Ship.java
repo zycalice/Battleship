@@ -17,7 +17,7 @@ public abstract class Ship {
 	 * get the row (0 to 9) which contains the bow (front) of the ship.
 	 * @return the row position of bow
 	 */
-	int getBowRow() {
+	public int getBowRow() {
 		return bowRow;
 	}
 
@@ -25,7 +25,7 @@ public abstract class Ship {
 	 * get the column position of bow
 	 * @return the column position of bow
 	 */
-	int getBowColumn() {
+	public int getBowColumn() {
 		return bowColumn;
 	}
 	
@@ -34,7 +34,7 @@ public abstract class Ship {
 	 * check if the ship is horizontal
 	 * @return true if the ship is horizontal, otherwise false
 	 */
-	boolean isHorizontal() {
+	public boolean isHorizontal() {
 		return horizontal;
 	}
 
@@ -43,7 +43,7 @@ public abstract class Ship {
 	 * set the row position of bow
 	 * @param row row position of bow
 	 */
-	void setBowRow(int row) { 
+	protected void setBowRow(int row) {
 		this.bowRow = row;
 	}
 	
@@ -52,7 +52,7 @@ public abstract class Ship {
 	 * set the column position of bow
 	 * @param column column position of bow
 	 */
-	void setBowColumn(int column) { 
+	protected void setBowColumn(int column) {
 		this.bowColumn = column;
 	}
 
@@ -61,7 +61,7 @@ public abstract class Ship {
 	 * set the orientation of this ship
 	 * @param horizontal set the ship to be horizontal or not
 	 */
-	void setHorizontal(boolean horizontal) { 
+	protected void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
 	}
 
@@ -69,13 +69,13 @@ public abstract class Ship {
 	/**
 	 * abstract method, will be overridden
 	 */
-	abstract int getLength();
+	public abstract int getLength();
 	
 
 	/**
 	 * abstract method, will be overridden
 	 */
-	abstract String getShipType();
+	public abstract String getShipType();
 
 	/**
 	 * check if it is okay to put ship at a location
@@ -85,7 +85,7 @@ public abstract class Ship {
 	 * @param ocean the ocean for this game
 	 * @return true is the ship bow can be placed at this position; false otherwise
 	 */
-	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean){
+	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean){
 		int shipLen = this.getLength();
 		int rowMin, rowMax, colMin, colMax;
 
@@ -131,7 +131,7 @@ public abstract class Ship {
 	 * @param horizontal horizontal or not
 	 * @param ocean ocean of the game
 	 */
-	void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		//update ship
 		this.setBowRow(row);
 		this.setBowColumn(column);
@@ -155,7 +155,7 @@ public abstract class Ship {
 	 * @param column column position of the hit
 	 * @return true or false if the ship is being hit
 	 */
-	boolean shootAt(int row, int column) {
+	public boolean shootAt(int row, int column) {
 		// if already sunk return false
 		if (this.isSunk()) return false;
 
@@ -179,7 +179,7 @@ public abstract class Ship {
 	 * if all parts of the ship has been hit
 	 * @return true if all parts of the ship has been hit; false otherwise;
 	 */
-	boolean isSunk() {
+	public boolean isSunk() {
 		for (int i=0; i<this.getLength();i++) {
 			if (!this.hit[i]) return false ;
 		}
