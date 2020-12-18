@@ -10,10 +10,8 @@ import java.util.Scanner;
 public class BattleshipGame {//the methods below are support methods for user inputs
 
 	private final Ocean ocean = new Ocean();
-	private int count;
 	static int gameCount;
 	static int bestCount = Integer.MAX_VALUE;
-
 
 	/**
 	 * constructor, keep track of number of games played.
@@ -106,11 +104,10 @@ public class BattleshipGame {//the methods below are support methods for user in
     		} else {
     			System.out.println("You just missed!");
     		}
-    		count++;
     	}
-    	bestCount = Math.min(count, bestCount);
+    	bestCount = Math.min(ocean.getShotsFired(), bestCount);
     	ocean.print();
-    	System.out.println("Game over! Your final score is: " + count);
+    	System.out.println("Game over! Your final score is: " + ocean.getShotsFired());
 		System.out.println("The best possible score is 20.");
 
     }
